@@ -45,11 +45,6 @@ variable "sg_postgres_name" {
   description = "Nome do Security Group do PostgreSQL"
 }
 
-variable "acl_name" {
-  type        = string
-  description = "Nome do Network ACL"
-}
-
 variable "cidr_block" {
   type        = string
   description = "CIDR da VPC"
