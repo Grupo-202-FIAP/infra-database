@@ -1,12 +1,3 @@
-resource "aws_db_subnet_group" "infra_private" {
-  name        = var.db_subnet_group_name
-  description = "Subnets privadas para o RDS"
-  subnet_ids  = var.private_subnet_ids
-
-  tags = {
-    Name = var.db_subnet_group_name
-  }
-}
 
 resource "aws_db_instance" "rds" {
   identifier          = var.rds_identifier_name

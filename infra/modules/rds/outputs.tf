@@ -8,7 +8,3 @@ output "rds_username" {
   value       = aws_ssm_parameter.rds_username.value
 }
 
-output "rds_subnet_group" {
-  description = "Nome do subnet group criado"
-  value       = aws_db_subnet_group.infra_private.name
-}
