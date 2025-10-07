@@ -1,5 +1,5 @@
 # RDS
-rds_identifier_name   = "db-fastfood"
+rds_identifier_name   = "db-fastfood1"
 rds_username_ssm_path = "/fastfood/rds/username"
 rds_password_ssm_path = "/fastfood/rds/password"
 instance_class        = "db.t3.micro"
