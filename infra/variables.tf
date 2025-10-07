@@ -1,3 +1,7 @@
+variable "subnet_group_name" {
+  description = "Nome do DB Subnet Group usado para o RDS. Deve ser igual ao criado no repositório de rede."
+  type        = string
+}
 variable "rds_username_ssm_path" {
   description = "Caminho (name) no SSM Parameter Store para o nome de usuário do RDS."
   type        = string
