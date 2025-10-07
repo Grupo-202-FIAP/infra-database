@@ -149,5 +149,5 @@ variable "bucket_name" {
 
 variable "region" {
   description = "Região da AWS"
-  type = string
+  type        = string
 }
