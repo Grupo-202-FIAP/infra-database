@@ -7,8 +7,8 @@ module "rds_instance" {
   rds_username_secret_name = var.rds_username_ssm_path
   rds_password_secret_name = var.rds_password_ssm_path
 
-  instance_class           = var.instance_class
-  allocated_storage        = var.allocated_storage
-  engine                   = var.engine
-  engine_version           = var.engine_version
+  instance_class    = var.instance_class
+  allocated_storage = var.allocated_storage
+  engine            = var.engine
+  engine_version    = var.engine_version
 }
