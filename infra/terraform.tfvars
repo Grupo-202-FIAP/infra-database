@@ -8,7 +8,7 @@ engine                = "postgres"
 engine_version        = "15"
 
 # Nome do DB Subnet Group criado pelo repositório de rede
-subnet_group_name     = "infra-subnet-private"
+subnet_group_name = "infra-subnet-private"
 
 # Gateway
 api_gw_name        = "crud-api"
