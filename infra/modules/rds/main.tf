@@ -11,11 +11,10 @@ resource "aws_db_instance" "rds" {
   password       = aws_ssm_parameter.rds_password.value
 
   vpc_security_group_ids = var.rds_sg_ids
-  db_subnet_group_name   = aws_db_subnet_group.infra_private.name
+  db_subnet_group_name   = var.db_subnet_group_name
 
   skip_final_snapshot = true
 
-  depends_on = [aws_db_subnet_group.infra_private]
 }
 
 resource "aws_ssm_parameter" "rds_username" {
