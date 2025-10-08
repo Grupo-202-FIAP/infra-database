@@ -1,5 +1,7 @@
 # infra-database
 
+[Documentação do Projeto FastFood - Banco de Dados (PDF)](/doc/Projeto%20FastFood%20-%20Banco%20de%20Dados.pdf)
+
 Este repositório é dedicado exclusivamente ao provisionamento do banco de dados (RDS) na AWS.
 
 Todos os recursos de rede, subnets, security groups e demais dependências são criados por outro repositório de infraestrutura. Aqui, apenas o banco de dados é criado, utilizando os dados necessários via `terraform_remote_state`.
