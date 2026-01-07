@@ -42,3 +42,17 @@ resource "random_password" "rds_password" {
   min_lower        = 1
   min_numeric      = 1
 }
+
+resource "null_resource" "db_init" {
+  depends_on = [aws_db_instance.rds]
+
+  provisioner "local-exec" {
+    command = <<-EOT
+      PGPASSWORD="${aws_ssm_parameter.rds_password.value}" \
+      psql -h ${aws_db_instance.rds.endpoint} \
+           -U postgres \
+           -d postgres \
+           -f "${path.module}/../../doc/01_schema_users.sql"
+    EOT
+  }
+}
