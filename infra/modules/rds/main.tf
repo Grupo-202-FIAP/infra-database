@@ -3,7 +3,7 @@ resource "aws_db_instance" "rds" {
   identifier          = var.rds_identifier_name
   allocated_storage   = var.allocated_storage
   instance_class      = var.instance_class
-  publicly_accessible = false
+  publicly_accessible = var.publicly_accessible
 
   engine         = var.engine
   engine_version = var.engine_version
@@ -15,6 +15,22 @@ resource "aws_db_instance" "rds" {
 
   skip_final_snapshot = true
 
+}
+
+locals {
+  _rds_sg_list = var.ec2_security_group_id != "" ? var.rds_sg_ids : []
+}
+
+resource "aws_security_group_rule" "allow_ec2" {
+  for_each = toset(local._rds_sg_list)
+
+  type                     = "ingress"
+  from_port                = var.db_port
+  to_port                  = var.db_port
+  protocol                 = "tcp"
+  security_group_id        = each.value
+  source_security_group_id = var.ec2_security_group_id
+  description              = "Allow EC2 security group to access RDS"
 }
 
 resource "aws_ssm_parameter" "rds_username" {
@@ -43,16 +59,3 @@ resource "random_password" "rds_password" {
   min_numeric      = 1
 }
 
-resource "null_resource" "db_init" {
-  depends_on = [aws_db_instance.rds]
-
-  provisioner "local-exec" {
-    command = <<-EOT
-      PGPASSWORD="${aws_ssm_parameter.rds_password.value}" \
-      psql -h ${aws_db_instance.rds.endpoint} \
-           -U postgres \
-           -d postgres \
-           -f "${path.module}/../../doc/01_schema_users.sql"
-    EOT
-  }
-}
