@@ -21,17 +21,24 @@ locals {
   _rds_sg_list = var.ec2_security_group_id != "" ? var.rds_sg_ids : []
 }
 
-resource "aws_security_group_rule" "allow_ec2" {
+# Nota: Esta regra de ingresso pode já existir em aplicações anteriores
+# Se ocorrer erro de duplicação, comente este bloco
+ 
+resource "aws_vpc_security_group_ingress_rule" "allow_ec2" {
   for_each = toset(local._rds_sg_list)
 
-  type                     = "ingress"
   from_port                = var.db_port
   to_port                  = var.db_port
-  protocol                 = "tcp"
+  ip_protocol              = "tcp"
   security_group_id        = each.value
-  source_security_group_id = var.ec2_security_group_id
+  referenced_security_group_id = var.ec2_security_group_id
   description              = "Allow EC2 security group to access RDS"
+
+  lifecycle {
+    ignore_changes = all
+  }
 }
+ 
 
 resource "aws_ssm_parameter" "rds_username" {
   name        = var.rds_username_secret_name

@@ -61,3 +61,45 @@ variable "bucket_name" {
   description = "Nome do bucket"
   type        = string
 }
+
+# EC2 Bastion Variables
+variable "ec2_key_pair_name" {
+  description = "Nome da chave SSH para a EC2 bastion"
+  type        = string
+}
+
+variable "ec2_public_key" {
+  description = "Chave pública SSH para a EC2 bastion (conteúdo completo da chave .pub)"
+  type        = string
+  sensitive   = true
+}
+
+variable "ec2_security_group_name" {
+  description = "Nome do security group da EC2 bastion"
+  type        = string
+  default     = "ec2-bastion-rds-sg"
+}
+
+variable "ec2_ssh_cidr_blocks" {
+  description = "CIDR blocks permitidos para SSH à EC2 bastion (ex: [\"203.0.113.0/24\"])"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
+
+variable "ec2_instance_type" {
+  description = "Tipo da instância EC2 bastion (ex: t3.micro, t3.small)"
+  type        = string
+  default     = "t3.micro"
+}
+
+variable "ec2_instance_name" {
+  description = "Nome da instância EC2 bastion"
+  type        = string
+  default     = "bastion-rds-management"
+}
+
+variable "ec2_associate_public_ip" {
+  description = "Se a EC2 bastion deve ter IP público"
+  type        = bool
+  default     = true
+}
