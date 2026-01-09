@@ -26,5 +26,5 @@ module "ec2_bastion" {
   bastion_root_volume_size = var.bastion_root_volume_size
   
   public_subnet_id = data.terraform_remote_state.network.outputs.public_subnet_ids[0]
-  bastion_sg_id    = data.terraform_remote_state.network.outputs.security_group_bastion_id
+  bastion_sg_id    = data.terraform_remote_state.network.outputs.sg_bastion_id
 }
