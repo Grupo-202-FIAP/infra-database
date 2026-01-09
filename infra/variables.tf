@@ -61,3 +61,20 @@ variable "bucket_name" {
   description = "Nome do bucket"
   type        = string
 }
+
+variable "bastion_key_name" {
+  description = "Nome da key pair para acesso SSH ao Bastion Host"
+  type        = string
+}
+
+variable "bastion_instance_type" {
+  description = "Tipo de instância EC2 para o Bastion Host"
+  type        = string
+  default     = "t3.micro"
+}
+
+variable "allowed_ssh_cidr" {
+  description = "CIDR block permitido para SSH ao Bastion Host"
+  type        = string
+  default     = "0.0.0.0/0"
+}

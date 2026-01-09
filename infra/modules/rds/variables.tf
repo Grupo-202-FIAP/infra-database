@@ -51,7 +51,7 @@ variable "db_subnet_group_name" {
 variable "publicly_accessible" {
   description = "Se o RDS deve ser publicamente acessível"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "ec2_security_group_id" {

@@ -14,7 +14,6 @@ resource "aws_db_instance" "rds" {
   db_subnet_group_name   = var.db_subnet_group_name
 
   skip_final_snapshot = true
-
 }
 
 locals {
