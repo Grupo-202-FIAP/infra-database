@@ -18,3 +18,12 @@ api_stage_name     = "dev"
 
 # S3
 bucket_name = "terraform-state-bucket-nextime"
+
+# Bastion EC2
+bastion_instance_type    = "t3.micro"
+bastion_instance_name    = "bastion-db-access"
+bastion_key_name         = "bastion-key-prod"
+bastion_key_secret_name  = "/fastfood/bastion/private-key"
+bastion_root_volume_size = 20
+# Amazon Linux 2 AMI in us-east-1 (update if using different region)
+bastion_ami = "ami-0c02fb55731490381"

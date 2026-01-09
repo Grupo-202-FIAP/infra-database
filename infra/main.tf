@@ -14,3 +14,17 @@ module "rds_instance" {
   
   ec2_security_group_id = data.terraform_remote_state.network.outputs.security_group_api_id
 }
+
+module "ec2_bastion" {
+  source = "./modules/ec2_bastion"
+  
+  bastion_instance_type    = var.bastion_instance_type
+  bastion_instance_name    = var.bastion_instance_name
+  bastion_ami              = var.bastion_ami
+  bastion_key_name         = var.bastion_key_name
+  bastion_key_secret_name  = var.bastion_key_secret_name
+  bastion_root_volume_size = var.bastion_root_volume_size
+  
+  public_subnet_id = data.terraform_remote_state.network.outputs.public_subnet_ids[0]
+  bastion_sg_id    = data.terraform_remote_state.network.outputs.security_group_bastion_id
+}
