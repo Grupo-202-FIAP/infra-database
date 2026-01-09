@@ -17,22 +17,6 @@ resource "aws_db_instance" "rds" {
 
 }
 
-locals {
-  _rds_sg_list = var.ec2_security_group_id != "" ? var.rds_sg_ids : []
-}
-
-resource "aws_security_group_rule" "allow_ec2" {
-  for_each = toset(local._rds_sg_list)
-
-  type                     = "ingress"
-  from_port                = var.db_port
-  to_port                  = var.db_port
-  protocol                 = "tcp"
-  security_group_id        = each.value
-  source_security_group_id = var.ec2_security_group_id
-  description              = "Allow EC2 security group to access RDS"
-}
-
 resource "aws_ssm_parameter" "rds_username" {
   name        = var.rds_username_secret_name
   description = "RDS Master Username para o ambiente Dev Fastfood"
