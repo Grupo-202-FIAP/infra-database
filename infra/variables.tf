@@ -1,5 +1,4 @@
-variable "subnet_group_name" {
-  description = "Nome do DB Subnet Group usado para o RDS. Deve ser igual ao criado no repositório de rede."
+ 
 variable "subnet_group_name" {
   description = "Nome do DB Subnet Group usado para o RDS. Deve ser igual ao criado no repositório de rede."
   type        = string
