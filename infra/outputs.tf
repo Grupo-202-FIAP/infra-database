@@ -1,9 +1,16 @@
-output "rds_instance_id" {
-  description = "ID da instância RDS criada"
-  value       = module.rds_instance.rds_instance_id
+output "rds_endpoint" {
+  description = "Endpoint do banco de dados RDS"
+  value       = module.rds_instance.rds_endpoint
 }
 
-output "rds_endpoint" {
-  description = "Endpoint da instância RDS"
-  value       = module.rds_instance.rds_endpoint
+output "rds_username" {
+  description = "Usuário do RDS"
+  value       = module.rds_instance.rds_username
+  sensitive   = true
+}
+
+output "rds_password_ssm_param" {
+  description = "Caminho do SSM Parameter Store com a senha do RDS"
+  value       = var.rds_password_ssm_path
+  sensitive   = true
 }
