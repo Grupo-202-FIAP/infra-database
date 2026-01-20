@@ -11,4 +11,6 @@ module "rds_instance" {
   allocated_storage = var.allocated_storage
   engine            = var.engine
   engine_version    = var.engine_version
+  
+  ec2_security_group_id = data.terraform_remote_state.network.outputs.security_group_api_id
 }

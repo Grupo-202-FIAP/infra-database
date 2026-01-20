@@ -3,7 +3,7 @@ resource "aws_db_instance" "rds" {
   identifier          = var.rds_identifier_name
   allocated_storage   = var.allocated_storage
   instance_class      = var.instance_class
-  publicly_accessible = false
+  publicly_accessible = var.publicly_accessible
 
   engine         = var.engine
   engine_version = var.engine_version
@@ -42,3 +42,4 @@ resource "random_password" "rds_password" {
   min_lower        = 1
   min_numeric      = 1
 }
+
